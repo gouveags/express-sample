@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:up": "docker-compose up -d mongo",
     "docker:down": "docker-compose down",
-    "seed:db": "node -r ts-node/register --env-file=.env ./seed"
+    "seed:db": "node -r ts-node/register --env-file=.env ./seed",
     "prepare": "husky"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/mongoose": "^10.0.10",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^7.4.0",
     "mongoose": "^8.4.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
@@ -67,7 +68,7 @@
       "json",
       "ts"
     ],
-    "rootDir": ".",
+    "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "@swc/jest"
@@ -75,16 +76,12 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/main.ts",
-      "<rootDir>/.*\\.module\\.ts$",
-      "<rootDir>/.*\\.options\\.ts$"
-    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
-      "<rootDir>/src/main.ts",
-      "<rootDir>/libs/config/",
+      "index.ts",
+      "<rootDir>/main.ts",
+      "<rootDir>/.*\\.config\\.ts$",
       "<rootDir>/.*\\.module\\.ts$",
       "<rootDir>/.*\\.options\\.ts$"
     ],
@@ -96,13 +93,6 @@
         "statements": 80
       }
     },
-    "testEnvironment": "node"
-    "roots": [
-      "<rootDir>/src/",
-      "<rootDir>/libs/"
-    ],
-    "moduleNameMapper": {
-      "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1"
-    }
+    "coverageProvider": "v8"
   }
 }
