@@ -35,6 +35,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: modules
+          path: node_modules
       - name: List directories
         run: ls -l
       - name: Run lint
