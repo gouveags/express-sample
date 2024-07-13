@@ -16,5 +16,6 @@
         "tsConfigPath": "libs/config/tsconfig.lib.json"
       }
     }
+    "builder": "swc"
   }
 }
