@@ -16,7 +16,7 @@ jobs:
           name: prepare
   lint:
     runs-on: ubuntu-latest
-    needs: [build] 
+    needs: [prepare] 
     steps:
       - name: Download prepare artifact
         uses: actions/download-artifact@v4
@@ -26,7 +26,7 @@ jobs:
         run: npm run lint
   tests:
     runs-on: ubuntu-latest
-    needs: [build] 
+    needs: [prepare] 
     steps:
       - name: Download prepare artifact
         uses: actions/download-artifact@v4
@@ -36,7 +36,7 @@ jobs:
         run: npm run test:cov
   tests_e2e:
     runs-on: ubuntu-latest
-    needs: [build] 
+    needs: [prepare] 
     steps:
       - name: Download prepare artifact
         uses: actions/download-artifact@v4
